@@ -2,6 +2,11 @@
     include 'header.php';
     ?>
                     <div class="card-body">
+                        <?php
+                        if(isset($_GET['msg'])){
+                            echo "<div class='alert alert-success'><strong>Success!</strong>".$_GET['msg']."</div>";
+                        }
+                        ?>
                     <table class="table table-striped table-bordered table-hover">
                         <tr>
                             <th>Serial</th>
