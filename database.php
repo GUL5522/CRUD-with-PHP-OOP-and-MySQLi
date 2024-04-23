@@ -20,10 +20,36 @@ class Database{
         }
 
     }
+    // Insert opration
     public function insert($data){
-        $row = $this->link->query($data) or die($this->link->error.__LINE__);
-        if($row){
-            header('Location:index.php?msg=' . urlencode('Data Successfully Inserted!'));
+        $insert_row = $this->link->query($data) or die($this->link->error.__LINE__);
+        if($insert_row){
+            header('Location:index.php?msg=' . urlencode('Data Updated Successfully Inserted!'));
+        }else{
+            die('Error '.$this->link->errno .")".$this->link->error);
+        }
+    }
+    //select opertation
+    public function select($data){
+        $result = $this->link->query($data) or die($this->link->error.__LINE__);
+        if($result->num_rows > 0){
+            return $result;
+        }else{
+            return false;
+        }
+    }
+    public function update($data){
+        $update_row = $this->link->query($data) or die($this->link->error.__LINE__);
+        if($update_row){
+            header('Location:index.php?msg=' . urlencode('Data Updated Successfully !'));
+        }else{
+            die('Error '.$this->link->errno .")".$this->link->error);
+        }
+    }
+    public function delete($data){
+        $delete_row = $this->link->query($data) or die($this->link->error.__LINE__);
+        if($delete_row){
+            header('Location:index.php?msg=' . urlencode('Data Delete Successfully !'));
         }else{
             die('Error '.$this->link->errno .")".$this->link->error);
         }
